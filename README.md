@@ -1,8 +1,8 @@
 Brain Academy. Python Course. Laboratory Work #4
 
-Laboratory Work #4.1.
+Laboratory Work #4.1. 
 
-Task:
+Task: 
 Refactor given program code:
 1. Put reusable code into the functions:
    1.1. First - to calculate days in year
@@ -70,8 +70,8 @@ print("The {} year is bigger".format(bigger_year))
 
 ```
 
-Laboratory Work #4.2.
-Task:
+Laboratory Work #4.2. 
+Task: 
  1. Create variable with numbers list from 0 to 9
  2. Create variable with numbers list from 0 to 9 and step 2
  3. Create empty list
@@ -95,8 +95,8 @@ print(intersect(var1, var2))
 print("List:", res)
 ```
 
-Laboratory Work #4.3.
-Task:
+Laboratory Work #4.3. 
+Task: 
  1. Create string variable word
  2. Create dictionary variable ids
  3.  Create function_4_1 that include at least 2 arguments_4_3 word and name from ids dictionary
@@ -118,8 +118,8 @@ intersection(word, **ids)
 intersection(word, ids['name'], *list(range(10)))
  ```
  
-Laboratory Work #4.4.
-Task:
+Laboratory Work #4.4. 
+Task: 
 1. Refactor given program code:
    foo = [1, 2, 3, 4, 5]
    odd_foo = []
@@ -150,8 +150,8 @@ odd_foo = [x for x in foo if x % 2 == 1]
 odd_foo = filter(lambda x: x % 2 == 1, foo)
 ```
   
-  Laboratory Work #4.5.
-Task:
+  Laboratory Work #4.5. 
+Task: 
 Create own enumerate function with count started from 1 bot from 0
 
 ```python 
@@ -169,12 +169,46 @@ for item in my_enumerate(foo):
     print(item)
 ```
 
-Laboratory Work #4.6.
-Task:
+Laboratory Work #4.6. 
 Create function that write some info 
- into file object and flash data in decorator part
+into file object and flash data in decorator part
+
+1. Create list with 5 elements of string data
+2. Create empty config.data file
+3. Create function “writeConfig” that will do:
+  a. Take two arguments (file object and string data)
+  b. Read data from file and if in config.data lines -
+  “Configuration file! Do not modify!”, skip step else write above line.
+  c. Write second argument (string data) from new line, ex. - “string_data;”
+4. Create simple python decorator were:
+  a. Created file object with path – “config.data” and mode “r+”
+  b. writeConfig function called
+  c. close file object
+5.Use for loop for write each item from list created before
+6. Use breakpoint after every iteration and check config.data file content
  
 ```python 
- 
- 
+ data_lst = ["index.php", "main.py", "__init__.py", "core.py", "data.bin"]
+
+
+def mydecor(func):
+    def my_decor(item):
+        data_file = open("config.data", "r+")
+        func(data_file, item)
+        data_file.close()
+
+    return my_decor
+
+
+@mydecor
+def writeConfig(file, line):  # Define function in step 3
+    if "Configuration file! Do not modify!" in file.read():
+        file.write("%s;\n" % (line))
+    else:
+        file.write("Configuration file! Do not modify!\n" + \
+                   "%s;\n" % (line))
+
+
+for item in data_lst:
+    writeConfig(item)
 ```
