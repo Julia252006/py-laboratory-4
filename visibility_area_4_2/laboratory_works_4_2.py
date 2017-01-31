@@ -8,15 +8,16 @@
 
 print('\n\Laboratory Work 4.2')
 
-seq1 = list(range(10))
-seq2 = list(range(0,10,2))
+var1 = list(range(10))
+var2 = list(range(0,10,2))
 res = []
-def intersection(seq1, seq2):
+
+def intersect(var1, var2):
     res = []
-    for x in seq1:
-        if x in seq2:
-            res.append(x)
+    for x in var1:                # Scan seq1
+        if x in var2:             # Common item?
+            res.append(x)         # Add to end
     return res
 
-print(intersection(seq1, seq2))
+print(intersect(var1, var2))
 print("List:", res)
